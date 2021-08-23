@@ -1,5 +1,5 @@
 import express from 'express';
-import path from 'path';
+import router from './routes';
 
 const app = express();
 
@@ -11,3 +11,5 @@ app.listen(port, () => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/api', router);

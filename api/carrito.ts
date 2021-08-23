@@ -22,8 +22,8 @@ class Carrito {
   }
 
   agregarProducto(productoId: string) {
-    this.innerId += 1;
     const producto = productos.muestraUnProducto(productoId);
+    this.innerId += 1;
     const alcarro = {
       id: String(this.innerId),
       timestamp: Date.now(),
@@ -42,6 +42,9 @@ class Carrito {
   }
 
   muestraTodos() {
+    if (this.carrito.length === 0) {
+      return { error: 'No hay productos en el carrito' };
+    }
     return this.carrito;
   }
 

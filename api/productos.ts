@@ -16,22 +16,22 @@ class Productos {
   }
 
   //   Crud
-  agregarProducto(
-    nombre: string,
-    descripcion: string,
-    codigo: string,
-    precio: number,
-    stock: number
-  ) {
+  agregarProducto(datos: {
+    nombre: string;
+    descripcion: string;
+    codigo: string;
+    precio: number;
+    stock: number;
+  }) {
     this.innerId += 1;
     const producto = {
       id: String(this.innerId),
       timestamp: Date.now(),
-      nombre,
-      descripcion,
-      codigo,
-      precio,
-      stock,
+      nombre: datos.nombre,
+      descripcion: datos.descripcion,
+      codigo: datos.codigo,
+      precio: datos.precio,
+      stock: datos.stock,
     };
     this.productos.push(producto);
     return producto;
@@ -47,28 +47,34 @@ class Productos {
   }
 
   muestraTodos() {
+    if (this.productos.length === 0) {
+      return { error: 'No hay productos cargados' };
+    }
     return this.productos;
   }
 
   //   crUd
   modificaUnProducto(
     id: string,
-    nombreNuevo: string,
-    descripcionNuevo: string,
-    codigoNuevo: string,
-    precioNuevo: number,
-    stockNuevo: number
+    nuevos: {
+      nombre: string;
+      descripcion: string;
+      codigo: string;
+      precio: number;
+      stock: number;
+    }
   ) {
     const producto = this.productos.find((elemento) => elemento.id === id);
     if (producto === undefined) {
       throw new Error('Producto no encontrado');
     }
     producto.timestamp = Date.now();
-    producto.nombre = nombreNuevo;
-    producto.descripcion = descripcionNuevo;
-    producto.codigo = codigoNuevo;
-    producto.precio = precioNuevo;
-    producto.stock = stockNuevo;
+    producto.nombre = nuevos.nombre;
+    producto.descripcion = nuevos.descripcion;
+    producto.codigo = nuevos.codigo;
+    producto.precio = nuevos.precio;
+    producto.stock = nuevos.stock;
+    return producto;
   }
 
   eliminaUnProducto(id: string) {
