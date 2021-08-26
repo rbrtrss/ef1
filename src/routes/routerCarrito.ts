@@ -1,22 +1,28 @@
-import carrito from '../../api/carrito';
-import { Router, Request, Response } from 'express';
+import carrito from '../models/carrito';
+import controlCarrito from '../controllers/controllerCarrito';
+import controlProductos from '../controllers/controllerProductos';
+import { Router } from 'express';
 
 const routerCarrito = Router();
 
-routerCarrito.get('/listar', (req: Request, res: Response) => {
-  res.json(carrito.muestraTodos());
-});
+routerCarrito.get('/listar', controlCarrito.muestraArticulo);
 
-routerCarrito.get('/listar/:id', (req: Request, res: Response) => {
-  res.json(carrito.muestraUnProducto(req.params.id));
-});
+routerCarrito.get(
+  '/listar/:id',
+  controlCarrito.articuloExiste,
+  controlCarrito.muestraArticulo
+);
 
-routerCarrito.post('/agregar/:id_producto', (req: Request, res: Response) => {
-  res.json(carrito.agregarProducto(req.params.id_producto));
-});
+routerCarrito.post(
+  '/agregar/:id_producto',
+  controlCarrito.productoExiste,
+  controlCarrito.agregaArticulo
+);
 
-routerCarrito.delete('/borrar/:id', (req: Request, res: Response) => {
-  res.json(carrito.eliminaUnProducto(req.params.id));
-});
+routerCarrito.delete(
+  '/borrar/:id',
+  controlCarrito.articuloExiste,
+  controlCarrito.eliminaArticulo
+);
 
 export default routerCarrito;

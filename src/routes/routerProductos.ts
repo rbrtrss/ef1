@@ -1,47 +1,31 @@
-import productos from '../../api/productos';
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import adminAccess from '../middleware/adminAccess';
+import controlProductos from '../controllers/controllerProductos';
 
 const routerProductos = Router();
 
-const ADMINISTRADOR = false;
+routerProductos.get('/listar', controlProductos.muestraProducto);
 
-const permisoAdministrador = (req: Request, res: Response, next: any) => {
-  if (ADMINISTRADOR) {
-    return next();
-  }
-  res.json({ error: 'ruta no autorizada' });
-};
-
-routerProductos.get('/listar', (req: Request, res: Response) => {
-  res.json(productos.muestraTodos());
-});
-
-routerProductos.get('/listar/:id', (req: Request, res: Response) => {
-  res.json(productos.muestraUnProducto(req.params.id));
-});
-
-routerProductos.post(
-  '/agregar',
-  permisoAdministrador,
-  (req: Request, res: Response) => {
-    res.json(productos.agregarProducto(req.body));
-  }
+routerProductos.get(
+  '/listar/:id',
+  controlProductos.productoExiste,
+  controlProductos.muestraProducto
 );
+
+routerProductos.post('/agregar', adminAccess, controlProductos.agregaProducto);
 
 routerProductos.put(
   '/actualizar/:id',
-  permisoAdministrador,
-  (req: Request, res: Response) => {
-    res.json(productos.modificaUnProducto(req.params.id, req.body));
-  }
+  adminAccess,
+  controlProductos.productoExiste,
+  controlProductos.modificaProducto
 );
 
 routerProductos.delete(
   '/borrar/:id',
-  permisoAdministrador,
-  (req: Request, res: Response) => {
-    res.json(productos.eliminaUnProducto(req.params.id));
-  }
+  adminAccess,
+  controlProductos.productoExiste,
+  controlProductos.eliminaProducto
 );
 
 export default routerProductos;

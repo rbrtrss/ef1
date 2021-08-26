@@ -1,2 +1,4 @@
 node_modules
 dist
+src/models/bkp_carrito.json
+src/models/bkp_productos.json
