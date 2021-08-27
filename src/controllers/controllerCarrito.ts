@@ -7,7 +7,7 @@ class controlCarrito {
     const { id_producto } = req.params;
     const producto = productos.find(id_producto);
     if (!producto) {
-      res
+      return res
         .status(404)
         .json({ error: `Producto con id ${id_producto} no encontrado` });
     }
@@ -18,7 +18,9 @@ class controlCarrito {
     console.log(id);
     const articulo = carrito.find(id);
     if (!articulo) {
-      res.status(404).json({ error: `Articulo con id ${id} no encontrado` });
+      return res
+        .status(404)
+        .json({ error: `Articulo con id ${id} no encontrado` });
     }
     next();
   }

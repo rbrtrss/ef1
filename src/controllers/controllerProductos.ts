@@ -6,7 +6,9 @@ class controlProductos {
     const { id } = req.params;
     const producto = productos.find(id);
     if (!producto) {
-      res.status(404).json({ error: `Producto con id ${id} no encontrado` });
+      return res
+        .status(404)
+        .json({ error: `Producto con id ${id} no encontrado` });
     }
     next();
   }

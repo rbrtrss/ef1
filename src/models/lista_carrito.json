@@ -1,12 +1,12 @@
 {
-	"innerId": 3,
+	"innerId": 5,
 	"carrito": [
 		{
 			"id": "2",
-			"timestamp": 1630009268533,
+			"timestamp": 1630033142654,
 			"producto": {
 				"id": "3",
-				"timestamp": 1630009252953,
+				"timestamp": 1630033114253,
 				"nombre": "Pollo",
 				"descripcion": "Un rico pollo asado",
 				"codigo": "Y no se que sea esto",
@@ -17,10 +17,38 @@
 		},
 		{
 			"id": "3",
-			"timestamp": 1630009274870,
+			"timestamp": 1630033213022,
 			"producto": {
 				"id": "3",
-				"timestamp": 1630009252953,
+				"timestamp": 1630033114253,
+				"nombre": "Pollo",
+				"descripcion": "Un rico pollo asado",
+				"codigo": "Y no se que sea esto",
+				"foto": "https://cdn3.iconfinder.com/data/icons/street-food-and-food-trucker-1/64/fried-chicken-thigh-fast-food-128.png",
+				"precio": "234",
+				"stock": 50
+			}
+		},
+		{
+			"id": "4",
+			"timestamp": 1630033217044,
+			"producto": {
+				"id": "3",
+				"timestamp": 1630033114253,
+				"nombre": "Pollo",
+				"descripcion": "Un rico pollo asado",
+				"codigo": "Y no se que sea esto",
+				"foto": "https://cdn3.iconfinder.com/data/icons/street-food-and-food-trucker-1/64/fried-chicken-thigh-fast-food-128.png",
+				"precio": "234",
+				"stock": 50
+			}
+		},
+		{
+			"id": "5",
+			"timestamp": 1630033221043,
+			"producto": {
+				"id": "3",
+				"timestamp": 1630033114253,
 				"nombre": "Pollo",
 				"descripcion": "Un rico pollo asado",
 				"codigo": "Y no se que sea esto",
